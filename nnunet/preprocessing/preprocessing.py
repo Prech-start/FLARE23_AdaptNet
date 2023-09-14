@@ -275,12 +275,14 @@ class GenericPreprocessor(object):
             if scheme == "CT":
                 # clip to lb and ub from train data foreground and use foreground mn and sd from training data
                 assert self.intensityproperties is not None, "ERROR: if there is a CT then we need intensity properties"
-                mean_intensity = self.intensityproperties[c]['mean']
-                std_intensity = self.intensityproperties[c]['sd']
-                lower_bound = self.intensityproperties[c]['percentile_00_5']
-                upper_bound = self.intensityproperties[c]['percentile_99_5']
-                data[c] = np.clip(data[c], lower_bound, upper_bound)
-                data[c] = (data[c] - mean_intensity) / std_intensity
+                # mean_intensity = self.intensityproperties[c]['mean']
+                # std_intensity = self.intensityproperties[c]['sd']
+                # lower_bound = self.intensityproperties[c]['percentile_00_5']
+                # upper_bound = self.intensityproperties[c]['percentile_99_5']
+                # data[c] = np.clip(data[c], lower_bound, upper_bound)
+                # data[c] = (data[c] - mean_intensity) / std_intensity
+                data[c] = np.clip(data[c], -160, 240)
+                data[c] = (data[c] + 160) / 400
                 if use_nonzero_mask[c]:
                     data[c][seg[-1] < 0] = 0
             elif scheme == "CT2":
