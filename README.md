@@ -1,4 +1,4 @@
-# FLARE23 AdaptNet for MICCAI FLARE2023 Challenge
+#  AdaptNet: Adaptive Learning from Partially Labeled Data for Abdomen Multi-Organ and Tumor Segmentation
 
 ## Introduction
 
