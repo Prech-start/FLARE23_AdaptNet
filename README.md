@@ -1,6 +1,8 @@
-#  AdaptNet: Adaptive Learning from Partially Labeled Data for Abdomen Multi-Organ and Tumor Segmentation
+#  Solution of Team luojc for FLARE23 Challenge
 
 ## Introduction
+
+![image](https://github.com/Prech-start/FLARE23_AdaptNet/blob/main/IMG/overview.pdf)
 
 ## Environments and Installation
 
@@ -44,7 +46,9 @@ After preprocessing, we will obtain several folders:
 
 ### generate and process pseudo labels and update dataset
 
-To Simplifying the processes, you can use the following code to convert the dataset:
+We use the [method](https://github.com/Ziyan-Huang/FLARE22) to generate the pseudo labels.
+
+Then, to Simplify the processes, you can use the following code to convert the dataset:
 
 ```
 python data_convert.py -pseudo_label_folder -nnunet_preprocessing_folder -imagesTr_floder -labelTr_floder
@@ -63,6 +67,16 @@ python inference.py [INPUT_FOLDER] [OUTPUT_FOLDER]
 ```
 Before the Inference, you should move the best nnunet checkpoints to replace the three files in folder __'checkpoints'__.
 
+## Reference
+
+MACCAI FLARE2023 https://codalab.lisn.upsaclay.fr/competitions/12239
+
+MACCAI FLARE2022 Team balackbean https://github.com/Ziyan-Huang/FLARE22
+
+## Citations
+
 ## What's New?
 
 we have fix the [problem](https://github.com/Prech-start/FLARE23_AdaptNet/blob/a81cbd4463fccce56fff8cdca3828aade2a4f66d/utils/utils.py#L318) the influence from data dtype which may effects the final result!
+
+
