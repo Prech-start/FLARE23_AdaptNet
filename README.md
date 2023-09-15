@@ -65,4 +65,4 @@ Before the Inference, you should move the best nnunet checkpoints to replace the
 
 ## What's New?
 
-we have fix the problem the influence from data dtype which may effects the final result!
+we have fix the [problem](https://github.com/Prech-start/FLARE23_AdaptNet/blob/a81cbd4463fccce56fff8cdca3828aade2a4f66d/utils/utils.py#L318) the influence from data dtype which may effects the final result!
