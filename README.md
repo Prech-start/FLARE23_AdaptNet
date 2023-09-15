@@ -2,7 +2,9 @@
 
 ## Introduction
 
-![image](https://github.com/Prech-start/FLARE23_AdaptNet/blob/main/IMG/overview.pdf)
+### Overview of our work.
+
+![image](https://github.com/Prech-start/FLARE23_AdaptNet/blob/main/IMG/overview.png)
 
 ## Environments and Installation
 
