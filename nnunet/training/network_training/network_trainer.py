@@ -433,13 +433,13 @@ class NetworkTrainer(object):
 
         if not self.was_initialized:
             self.initialize(True)
-        self.max_num_epochs = 5 #todo edit maxnum epochs jc
-        from carbontracker.tracker import CarbonTracker
-
-        tracker = CarbonTracker(epochs=self.max_num_epochs) # todo cal co2
+        self.max_num_epochs = 200 #todo edit maxnum epochs jc
+        # from carbontracker.tracker import CarbonTracker
+        #
+        # tracker = CarbonTracker(epochs=self.max_num_epochs) # todo cal co2
 
         while self.epoch < self.max_num_epochs:
-            tracker.epoch_start() # todo cal co2
+            # tracker.epoch_start() # todo cal co2
             self.print_to_log_file("\nepoch: ", self.epoch)
             epoch_start_time = time()
             train_losses_epoch = []
@@ -496,7 +496,7 @@ class NetworkTrainer(object):
 
             self.epoch += 1
             self.print_to_log_file("This epoch took %f s\n" % (epoch_end_time - epoch_start_time))
-            tracker.epoch_end()
+            # tracker.epoch_end()
 
         self.epoch -= 1  # if we don't do this we can get a problem with loading model_final_checkpoint.
 

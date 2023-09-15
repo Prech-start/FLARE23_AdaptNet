@@ -238,41 +238,41 @@ class nnUNetTrainerV2(nnUNetTrainer):
         target = data_dict['target']
         # todo get weight
         weight = torch.ones(size=(len(target), self.batch_size, self.num_classes)) * 1 / 15
-        # for l in range(len(target)):
-        #     for b in range(target[l].shape[0]):
-        #         if do_backprop:
-        #             w_lb = weight[l, b]
-        #             y_true = target[l][b][0]
-        #             y_pseudo = target[l][b][1]
-        #
-        #             unique_true = torch.unique(y_true)
-        #             unique_pseudo = torch.unique(y_pseudo)
-        #             for p in unique_true:
-        #                 if p in unique_pseudo:
-        #                     y_pseudo[y_pseudo == p] = 0
-        #                     unique_pseudo = np.delete(unique_pseudo, np.where(unique_pseudo == p))
-        #             # unique_pseudo = np.unique(y_pseudo)
-        #             mask = y_true > 0
-        #             # filling seg
-        #             target[l][b][1] = ~mask * y_pseudo + mask * y_true
-        #             # weight calculation
-        #             before_weight = w_lb
-        #             # todo adaptive scale is 0.5
-        #             scale = 0.5
-        #             adapted_score = 1 / 15 * (len(unique_pseudo)) * (1 - scale)
-        #             after_weight = before_weight
-        #             for i, w in enumerate(w_lb):
-        #                 if i in unique_pseudo and i is not 0:
-        #                     after_weight[i] = scale * before_weight[i]
-        #                 if i in unique_true and i is not 0:
-        #                     after_weight[i] = before_weight[i] + adapted_score / (len(unique_pseudo) + 1e-6)
-        #             after_weight = after_weight / after_weight.sum()
-        #             weight[l, b] = after_weight
-        #         else:
-        #             target[l][b][1] = target[l][b][0]
         for l in range(len(target)):
             for b in range(target[l].shape[0]):
-                target[l][b][1] = target[l][b][0]
+                if do_backprop:
+                    w_lb = weight[l, b]
+                    y_true = target[l][b][0]
+                    y_pseudo = target[l][b][1]
+
+                    unique_true = torch.unique(y_true)
+                    unique_pseudo = torch.unique(y_pseudo)
+                    for p in unique_true:
+                        if p in unique_pseudo:
+                            y_pseudo[y_pseudo == p] = 0
+                            unique_pseudo = np.delete(unique_pseudo, np.where(unique_pseudo == p))
+                    # unique_pseudo = np.unique(y_pseudo)
+                    mask = y_true > 0
+                    # filling seg
+                    target[l][b][1] = ~mask * y_pseudo + mask * y_true
+                    # weight calculation
+                    before_weight = w_lb
+                    # todo adaptive scale is 0.5
+                    scale = 0.5
+                    adapted_score = 1 / 15 * (len(unique_pseudo)) * (1 - scale)
+                    after_weight = before_weight
+                    for i, w in enumerate(w_lb):
+                        if i in unique_pseudo and i is not 0:
+                            after_weight[i] = scale * before_weight[i]
+                        if i in unique_true and i is not 0:
+                            after_weight[i] = before_weight[i] + adapted_score / (len(unique_pseudo) + 1e-6)
+                    after_weight = after_weight / after_weight.sum()
+                    weight[l, b] = after_weight
+                else:
+                    target[l][b][1] = target[l][b][0]
+        # for l in range(len(target)):
+        #     for b in range(target[l].shape[0]):
+        #         target[l][b][1] = target[l][b][0]
         data = maybe_to_torch(data)
         target = maybe_to_torch(target)
         weight = maybe_to_torch(weight)
