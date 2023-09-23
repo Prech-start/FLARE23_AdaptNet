@@ -6,7 +6,7 @@
 
 ![image](https://github.com/Prech-start/FLARE23_AdaptNet/blob/main/IMG/overview.png)
 
-## Environments and Installation
+## Environments and Requirements
 
 The basic language for our work is [python](https://www.python.org/), and the baseline
 is [nnU-Net](https://github.com/MIC-DKFZ/nnUNet/tree/nnunetv1). So, you can install the nnunet frame with
@@ -17,7 +17,7 @@ pip install torch torchvision torchaudio
 pip install -e .
 ```
 
-## Usage
+## Prepocessing
 
 ### convert CT images to npy
 
@@ -69,13 +69,17 @@ python inference.py [INPUT_FOLDER] [OUTPUT_FOLDER]
 ```
 Before the Inference, you should move the best nnunet checkpoints to replace the three files in folder __'checkpoints'__.
 
-## Reference
+## EVALUATION
+
+## RESULTS
+
+
+## Acknowledgement
 
 MACCAI FLARE2023 https://codalab.lisn.upsaclay.fr/competitions/12239
 
 MACCAI FLARE2022 Team balackbean https://github.com/Ziyan-Huang/FLARE22
 
-## Citations
 
 ## What's New?
 
