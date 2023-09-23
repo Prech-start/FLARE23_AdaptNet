@@ -69,9 +69,9 @@ python inference.py [INPUT_FOLDER] [OUTPUT_FOLDER]
 ```
 Before the Inference, you should move the best nnunet checkpoints to replace the three files in folder __'checkpoints'__.
 
-## EVALUATION
+## Evaluation
 
-## RESULTS
+## Results
 
 
 ## Acknowledgement
